@@ -1,21 +1,31 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="static/css/index.css">
-
+	<link rel="stylesheet" type="text/css" href="static/css/animate.css">
+	
 	<head>
-		<!-- TODO: implement head -->
 	</head>
 
 	<body>
-		<h1> How well do you know these guns? </h1>
-		<!-- TODO: implement body -->
-		<div id="viewport">
-			<ul class="stack" id="mainStack">
-			</ul>
+		<h1 id="title"> Do you think this gun is legal?* </h1>
+
+		<div id="content">
+
+			<img id="button_no" src="static/site/button_no.png" class="child button" />
+			
+			<div id="gun_div">
+				<img id="gun" class="child gun"/>
+				<p id="gun_name">Caption</p>
+			</div>
+			
+			<img id="button_yes" src="static/site/button_yes.png" class="child button" />
+
 		</div>
+
+		<p class="footnote">*federally legal</p> 
 	</body>
 	
-	<script src="http://gajus.com/sandbox/swing/dist/swing.js"></script>
-	<script src="http://gajus.com/sandbox/swing/examples/card-stack/classList.js"></script>
+	<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
 	<script src="static/js/guns.js"></script>
 	<script src="static/js/main.js"></script>
 </html>

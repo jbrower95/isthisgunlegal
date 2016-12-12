@@ -8,54 +8,90 @@ function shuffle(a) {
     }
 }
 
-shuffle(guns);
-
-// An instance of the Stack is used to attach event listeners.
-stack = gajus.Swing.Stack();
-
-stack.on('throwout', (event) => {
-  // e.target Reference to the element that has been thrown out of the stack.
-  // e.throwDirection Direction in which the element has been thrown (Card.DIRECTION_LEFT, Card.DIRECTION_RIGHT).
-
-  console.log('Card has been thrown out of the stack.');
-  console.log('Throw direction: ' + (event.throwDirection == Card.DIRECTION_LEFT ? 'left' : 'right'));
-  if (event.throwDirection == Card.DIRECTION_LEFT) {
-  	alert("All of these are legal.")
-  }
+$.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+    }
 });
 
+shuffle(guns);
+var counter = -1;
+var gun = $("#gun");
+var guncaption = $("#gun_name");
 
-/* Create cards. */
-// <li class="card">A gun</li>
-var uistack = document.getElementById("mainStack");
-for (var i = 0; i < guns.length; i++) {
-	var elt = document.createElement("li");
-	elt.class = "card";
-	var name = guns[i].name;
-	var filename = guns[i].filename;
-	elt.innerHTML = "<img class='gun' src='static/legal/" + filename +"'></img><p class='caption'>" + name + "</p>";
-
-	uistack.appendChild(elt);
+function nextGun() {
+	counter = counter + 1;
+	gun.attr('src' ,"./static/legal/" + guns[counter].filename);
+	guncaption.text(guns[counter].name);
 }
 
-// Prepare the cards in the stack for iteration.
-const cards = [].slice.call(document.querySelectorAll('ul li'));
+var buttonNo = $("#button_no");
+var buttonYes = $("#button_yes");
 
-cards.forEach((targetElement) => {
-  // Add card element to the Stack.
-  stack.createCard(targetElement);
+buttonNo.hover(function() {
+	//in
+	$("#button_no").fadeTo( "fast" , 0.5);
+}, function() {
+	$("#button_no").fadeTo( "fast" , 1);
 });
 
-// Add event listener for when a card is thrown out of the stack.
-stack.on('throwout', (event) => {
-  // e.target Reference to the element that has been thrown out of the stack.
-  // e.throwDirection Direction in which the element has been thrown (Card.DIRECTION_LEFT, Card.DIRECTION_RIGHT).
-
-  console.log('Card has been thrown out of the stack.');
-  console.log('Throw direction: ' + (event.throwDirection == Card.DIRECTION_LEFT ? 'left' : 'right'));
+buttonYes.hover(function() {
+	//in
+	$("#button_yes").fadeTo( "fast" , 0.5);
+}, function() {
+	$("#button_yes").fadeTo( "fast" , 1);
 });
 
-// Add event listener for when a card is thrown in the stack, including the spring back into place effect.
-stack.on('throwin', () => {
-  console.log('Card has snapped back to the stack.');
+var msgs = [
+	"Can you believe this?",
+	"Totally federally allowed.",
+	"No federal ban on that!",
+	"The federal government has absolutely no problem with you owning that.",
+	"If you went hunting with that people would probably laugh at you.",
+	"Seriously, why would you ever need to own this.", 
+	"?",
+	"Isn't it terrifying that people might have purchased this."
+];
+
+buttonYes.click(function() {
+	var msg = msgs[Math.floor(Math.random()*msgs.length)];
+	alertify.log(msg);
+	nextGun();
 });
+
+buttonNo.click(function() {
+	alertify
+  .okBtn("Show me the bill.")
+  .cancelBtn("Continue the game.")
+  .confirm("Thought that should be illegal? Some people in Congress agree with you.", function (ev) {
+
+      // The click event is in the
+      // event variable, so you can use
+      // it here.
+      ev.preventDefault();
+      window.open("https://www.congress.gov/bill/114th-congress/house-bill/4269/text");
+
+  }, function(ev) {
+
+      // The click event is in the
+      // event variable, so you can use
+      // it here.
+      ev.preventDefault();
+      
+  });
+});
+
+$( document ).ready(function() {
+	$('#title').animateCss('bounce');
+	$('#button_no').animateCss('swing');
+	$('#button_yes').animateCss('swing');
+    nextGun();
+    $('#gun').animateCss('fadeIn');
+});
+
+
+
+

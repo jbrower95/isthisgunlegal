@@ -8,78 +8,42 @@ li {
 
 body {
 	padding-top: 100px;
-	background-color: black;
-	color: white;
+	padding-left: 80px;
+	padding-right: 80px;
 	cursor:url(../img/tinygun.png), auto;
 }
 
-
 h1 {
-	font-family: "Courier";
-	font-weight: 100;
 	text-align: center;
+	font-size: 60;
 }
 
-body {
-    
-	background-size: 100%;
-    background-image: url("https://childrengrieve.org/sites/default/files/spiritweb/bigstock-Newtown-Connecticut-Flagpole-672488.jpg"); font: normal 16px/24px 'Helvetica Neue', Helvetica, Arial, freesans, sans-serif;
+#content {
+	padding-top: 100px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
-button,
-input,
-code {
-    display: inline-block; outline: none; font: inherit; border: none; background: #FDE991; padding: 0;
+.child {
+	margin: auto;
 }
 
-button {
-    color: #C7433E;
+.button {
+	flex-shrink: 2;
 }
 
-input {
-    width: 50px;
+#button_no {
+	width: 200px;
+	height: 200px;
 }
 
-#viewport {
-    width: 500px; height: 500px; margin: 100px auto 0; position: relative;
-}
+ #button_yes {
+ 	width: 200px;
+ 	height: 200px;
+ }
 
-#viewport .stack {
-    width: 200px; height: 300px; background: #ED5D52; position: absolute; top: 100px; left: 50%; margin-left: -100px; border-radius: 10px;
-}
-
-#viewport li {
-    width: 200px; height: 300px; list-style: none; background: #fff; border-radius: 5px; position: absolute; top: 0; left: 0; box-shadow: 0 0 2px rgba(0,0,0,.2), 1px 1px 1px rgba(0,0,0,.2); line-height: 300px; text-align: center; border: 10px solid #ECECEC; box-sizing: border-box; 
-    font-size: 10px;
-    color: black;
-}
-
-#viewport li.in-deck:nth-child(3) {
-    top: 2px; transform: translate(2px, 2px) rotate(0.4deg);
-}
-
-#viewport li.in-deck:nth-child(2) {
-    top: 4px; transform: translate(-4px, -2px) rotate(-1deg);
-}
-
-#control {
-    position: absolute; bottom: 30px; left: 0; right: 0; text-align: center; font-size: 0;
-}
-
-#control button {
-    background: #FFFFFF; color: #373737; font-weight: bold; border: none; font: normal 18px/24px 'Helvetica Neue', Helvetica, Arial, freesans, sans-serif; margin: 0 5px; padding: 10px 15px; box-shadow: 0 2px 0 #63211F; outline: none; position: relative;
-}
-#control button:active {
-    background: #63211F; color: #FFFFFF; bottom: -2px; box-shadow: none;
-}
-
-#source {
-    width: 500px; margin: 20px auto;
-}
-
-#source a {
-    color: #C7433E;
-}
 
 .caption {
 	height: 10px;
@@ -87,11 +51,21 @@ input {
 }
 
 .gun {
-	width: 160px;
-	height: 160px;
-	padding: none;
-	margin: none;
+	max-width: 300px;
+	max-height: 300px;
+	height: auto;
 	pointer-events: none;
 	background-color: red;
 }
 
+#gun_name {
+	font-size: 40px;
+	font-style: bold;
+	text-align: center;
+}
+
+.footnote {
+	bottom: 0px;
+	margin-bottom: 40px;
+	opacity: .4;
+}
